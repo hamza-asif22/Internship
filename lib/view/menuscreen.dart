@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task1/model/menuscreen.dart';
+import 'package:task1/controller/menuscreen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -8,12 +10,13 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  final menucontrol = ProfileController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 34),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 34),
         child: Column(
           children: [
             Row(
@@ -53,12 +56,43 @@ class _MenuScreenState extends State<MenuScreen> {
               ],
             ),
 
-            SizedBox(height: 12),
+            SizedBox(height: 32),
             Row(
               children: [
-                
+                ClipOval(
+                  child: Image.asset(
+                    menucontrol.personalData.image,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+                SizedBox(width: 34),
+                Column(
+                  children: [
+                    Text(
+                      menucontrol.personalData.name,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      menucontrol.personalData.des,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 1,
+                        color: Colors.grey.shade500,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            )
+            ),
+            SizedBox(height: 12),
+            Container(decoration: BoxDecoration(color: Colors.grey.shade400)),
           ],
         ),
       ),

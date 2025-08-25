@@ -69,6 +69,7 @@ flutter:
     - assets/home/res2.jpg
     - assets/home/pizza.jpg
     - assets/search/
+    - assets/menuscreen/
     - assets/search/icon/
     - assets/cartscreen/p1.jpg
     - assets/cartscreen/p2.jpg
