@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:task1/model/menuscreen.dart';
-import 'package:task1/controller/menuscreen.dart';
+import 'package:task1/model/personalinfoscreen.dart';
+import '../controller/personalinfoscreen.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({super.key});
+class PersonalInfo extends StatefulWidget {
+  const PersonalInfo({super.key});
 
   @override
-  State<MenuScreen> createState() => _MenuScreenState();
+  State<PersonalInfo> createState() => _PersonalInfoState();
 }
 
-class _MenuScreenState extends State<MenuScreen> {
-  final menucontrol = ProfileController();
+class _PersonalInfoState extends State<PersonalInfo> {
+  final personalinfocontrol = PerInfoController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,6 @@ class _MenuScreenState extends State<MenuScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 34),
         child: Column(
-          
           children: [
             SizedBox(height: 16),
             Row(
@@ -33,26 +32,32 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back_ios_new, size: 16),
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/home');
+                      Navigator.of(context).pushReplacementNamed('/menuscreen');
                     },
                   ),
                 ),
                 const SizedBox(width: 18),
                 const Text(
-                  "Profile",
+                  "Personal Info",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
                 const Spacer(),
-                Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.more_horiz, size: 26),
-                    onPressed: () {},
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacementNamed('/editprofile');
+                  },
+                  child: Text(
+                    'EDIT',
+                    style: TextStyle(
+                      color: Colors.deepOrangeAccent,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.deepOrangeAccent,
+                      decorationThickness: 2,
+                      decorationStyle: TextDecorationStyle.solid,
+                      height: 1.4,
+                    ),
                   ),
                 ),
               ],
@@ -63,7 +68,7 @@ class _MenuScreenState extends State<MenuScreen> {
               children: [
                 ClipOval(
                   child: Image.asset(
-                    menucontrol.personalData.image,
+                    personalinfocontrol.personalInfodata.image,
                     fit: BoxFit.cover,
                     width: 100,
                     height: 100,
@@ -73,7 +78,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 Column(
                   children: [
                     Text(
-                      menucontrol.personalData.name,
+                      personalinfocontrol.personalInfodata.name,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -81,7 +86,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                     SizedBox(height: 6),
                     Text(
-                      menucontrol.personalData.des,
+                      personalinfocontrol.personalInfodata.des,
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         letterSpacing: 1,
@@ -93,17 +98,15 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 12),
-            Expanded(
-              child: ListView.separated(
-                itemCount: menucontrol.menusection.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 16),
-                itemBuilder: (context, sectionIndex) {
-                  final section = menucontrol.menusection[sectionIndex];
-                  return _groupContainer(
-                    section.map((item) => _menuitem(item, context)).toList(),
-                  );
-                },
+            SizedBox(height: 32),
+            Container(
+              child: _groupContainer(
+                List.generate(personalinfocontrol.personalinfopage.length, (
+                  index,
+                ) {
+                  final item = personalinfocontrol.personalinfopage[index];
+                  return _menuitem(item);
+                }),
               ),
             ),
           ],
@@ -112,24 +115,26 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 
-  Widget _menuitem(MenuSection item, BuildContext context) {
-    return Padding(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
-    child:  ListTile(
-      leading: Container(
-        width: 42,
-        height: 42,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
+  Widget _menuitem(PersonalInformation item) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+      child: ListTile(
+        leading: Container(
+          width: 42,
+          height: 42,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(22),
+          ),
+          child: Icon(item.icons, color: item.colors),
         ),
-        child: Icon(item.icon, color: item.color ),
+
+        title: Text(item.title, style: TextStyle(fontSize: 16)),
+        subtitle: Text(
+          item.data,
+          style: TextStyle(color: Colors.grey.shade500),
+        ),
       ),
-      title: Text(item.title, style: TextStyle(fontSize: 16)),
-      trailing: Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: () {
-        Navigator.of(context).pushReplacementNamed(item.route);
-      },
-    ),
     );
   }
 
