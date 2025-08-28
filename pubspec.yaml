@@ -37,6 +37,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   pin_code_fields: ^8.0.0
   dio: ^5.9.0
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
@@ -62,17 +63,12 @@ flutter:
   assets:
     - assets/
     - assets/paymentscreen/
-    - assets/home/all.jpg
-    - assets/home/hot.jpg
-    - assets/home/bur.jpg
-    - assets/home/res1.jpg
-    - assets/home/res2.jpg
-    - assets/home/pizza.jpg
+    - assets/home/
     - assets/search/
+    - assets/address/
     - assets/menuscreen/
     - assets/search/icon/
-    - assets/cartscreen/p1.jpg
-    - assets/cartscreen/p2.jpg
+    - assets/cartscreen/
     - assets/payementsuccess/tick.png
 
 

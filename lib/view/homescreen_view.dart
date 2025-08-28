@@ -45,12 +45,31 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(
-                              context,
-                            ).pushReplacementNamed('/menuscreen');
+                        PopupMenuButton<String>(
+                          position: PopupMenuPosition.under,
+                          color: Colors.white,
+                          onSelected: (value) {
+                            if (value == 'profile') {
+                              Navigator.of(
+                                context,
+                              ).pushReplacementNamed('/menuscreen');
+                            } else if (value == 'myorder') {
+                              Navigator.of(
+                                context,
+                              ).pushReplacementNamed('/myorder');
+                            }
                           },
+                          itemBuilder:
+                              (BuildContext context) => [
+                                const PopupMenuItem(
+                                  value: 'profile',
+                                  child: Text('Profile'),
+                                ),
+                                const PopupMenuItem(
+                                  value: 'myorder',
+                                  child: Text('My Order'),
+                                ),
+                              ],
                           child: Container(
                             padding: EdgeInsets.all(screenSize.width * 0.02),
                             decoration: BoxDecoration(
@@ -63,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
+
                         SizedBox(width: screenSize.width * 0.02),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

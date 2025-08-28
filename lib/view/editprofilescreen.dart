@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task1/controller/editprofilescreen.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -8,18 +9,12 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final name = TextEditingController();
-  final email = TextEditingController();
-  final phonenumber = TextEditingController();
-  final bio = TextEditingController();
+  late EditProfileController editProfilecontrol;
 
   @override
   void initState() {
     super.initState();
-    name.text = 'John Doe';
-    email.text = 'hello@gmail.com';
-    phonenumber.text = '123-432-0987';
-    bio.text = 'I love fast food';
+    editProfilecontrol = EditProfileController();
   }
 
   @override
@@ -88,7 +83,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 12),
             TextFormField(
-              controller: name,
+              controller: editProfilecontrol.nameController,
               keyboardType: TextInputType.name,
               enableSuggestions: false,
               autocorrect: false,
@@ -118,7 +113,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 12),
             TextFormField(
-              controller: email,
+              controller: editProfilecontrol.emailController,
               keyboardType: TextInputType.emailAddress,
               enableSuggestions: false,
               autocorrect: false,
@@ -148,7 +143,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 12),
             TextFormField(
-              controller: phonenumber,
+              controller: editProfilecontrol.phoneController,
               keyboardType: TextInputType.phone,
               enableSuggestions: false,
               autocorrect: false,
@@ -177,7 +172,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 12),
             TextFormField(
-              controller: bio,
+              controller: editProfilecontrol.bioController,
               keyboardType: TextInputType.multiline,
               enableSuggestions: false,
               minLines: 3,
@@ -203,7 +198,9 @@ class _EditProfileState extends State<EditProfile> {
               width: double.infinity,
               height: 62,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/personalinfo');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepOrangeAccent,
                   shape: RoundedRectangleBorder(
