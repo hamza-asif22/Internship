@@ -17,7 +17,7 @@ class _MyOrderState extends State<MyOrder> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          SizedBox(height: 22),
+          SizedBox(height: 36),
           Padding(
             padding: EdgeInsetsDirectional.symmetric(
               horizontal: 12,
@@ -61,6 +61,8 @@ class _MyOrderState extends State<MyOrder> {
               ],
             ),
           ),
+          SizedBox(height: 18),
+
           Column(
             children: [
               Row(
@@ -86,7 +88,7 @@ class _MyOrderState extends State<MyOrder> {
                           width: 150,
                           height: 2,
                           color:
-                              isSelected ? Colors.orange : Colors.transparent,
+                              isSelected ? Colors.orange : Colors.grey.shade400,
                         ),
                       ],
                     ),
@@ -113,7 +115,9 @@ class _MyOrderState extends State<MyOrder> {
                           width: 150,
                           height: 2,
                           color:
-                              !isSelected ? Colors.orange : Colors.transparent,
+                              !isSelected
+                                  ? Colors.orange
+                                  : Colors.grey.shade400,
                         ),
                       ],
                     ),
@@ -125,7 +129,7 @@ class _MyOrderState extends State<MyOrder> {
 
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child:
                   isSelected
                       ? ListView.builder(
@@ -135,13 +139,18 @@ class _MyOrderState extends State<MyOrder> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 12,
-                              vertical: 12,
+                              vertical: 6,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(item.title),
+                                Text(
+                                  item.title,
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                SizedBox(height: 8),
                                 const Divider(),
+                                SizedBox(height: 12),
                                 Column(
                                   children: [
                                     Row(
@@ -159,31 +168,59 @@ class _MyOrderState extends State<MyOrder> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 8),
+                                        SizedBox(width: 18),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
-                                                Text(item.itemname),
-                                                SizedBox(width: 150),
-                                                Text(item.itemid),
+                                                Text(
+                                                  item.itemname,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 135),
+                                                Text(
+                                                  item.itemid,
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    decoration:
+                                                        TextDecoration
+                                                            .underline,
+                                                    color: Colors.grey.shade500,
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                            SizedBox(height: 12),
+                                            SizedBox(height: 8),
                                             Row(
                                               children: [
-                                                Text('\$${item.itemprice}'),
-                                                SizedBox(width: 6),
-                                                Text('|  ${item.itemquantity}'),
+                                                Text(
+                                                  '\$${item.itemprice}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 15),
+                                                Text(
+                                                  '|   ${item.itemquantity}',
+                                                  style: TextStyle(
+                                                    color: Colors.grey.shade500,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ],
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 6),
+                                    SizedBox(height: 20),
                                     Container(
                                       width: double.infinity,
                                       child: Row(
@@ -193,8 +230,12 @@ class _MyOrderState extends State<MyOrder> {
                                             child: ElevatedButton(
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    Colors.deepOrange,
+                                                backgroundColor: Color.fromARGB(
+                                                  250,
+                                                  255,
+                                                  118,
+                                                  24,
+                                                ),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
@@ -216,7 +257,12 @@ class _MyOrderState extends State<MyOrder> {
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.white,
                                                 side: BorderSide(
-                                                  color: Colors.deepOrange,
+                                                  color: Color.fromARGB(
+                                                    250,
+                                                    255,
+                                                    118,
+                                                    24,
+                                                  ),
                                                 ),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
@@ -226,7 +272,12 @@ class _MyOrderState extends State<MyOrder> {
                                               child: Text(
                                                 "Cancel",
                                                 style: TextStyle(
-                                                  color: Colors.deepOrange,
+                                                  color: Color.fromARGB(
+                                                    250,
+                                                    255,
+                                                    118,
+                                                    24,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -248,18 +299,23 @@ class _MyOrderState extends State<MyOrder> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 12,
-                              vertical: 12,
+                              vertical: 6,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
-                                    Text(item.title),
+                                    Text(
+                                      item.title,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
                                     SizedBox(width: 32),
                                     Text(
                                       item.status,
                                       style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
                                         color:
                                             item.status.toLowerCase() ==
                                                     "completed"
@@ -272,7 +328,9 @@ class _MyOrderState extends State<MyOrder> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 8),
                                 const Divider(),
+                                SizedBox(height: 12),
                                 Column(
                                   children: [
                                     Row(
@@ -290,31 +348,59 @@ class _MyOrderState extends State<MyOrder> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 8),
+                                        SizedBox(width: 18),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               children: [
-                                                Text(item.itemname),
-                                                SizedBox(width: 150),
-                                                Text(item.itemid),
+                                                Text(
+                                                  item.itemname,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 135),
+                                                Text(
+                                                  item.itemid,
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    decoration:
+                                                        TextDecoration
+                                                            .underline,
+                                                    color: Colors.grey.shade500,
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                            SizedBox(height: 12),
+                                            SizedBox(height: 8),
                                             Row(
                                               children: [
-                                                Text('\$${item.itemprice}'),
-                                                SizedBox(width: 6),
-                                                Text('|  ${item.itemquantity}'),
+                                                Text(
+                                                  '\$${item.itemprice}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 15),
+                                                Text(
+                                                  '|   ${item.itemquantity}',
+                                                  style: TextStyle(
+                                                    color: Colors.grey.shade500,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ],
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 6),
+                                    SizedBox(height: 20),
                                     Container(
                                       width: double.infinity,
                                       child: Row(
@@ -326,7 +412,12 @@ class _MyOrderState extends State<MyOrder> {
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.white,
                                                 side: BorderSide(
-                                                  color: Colors.deepOrange,
+                                                  color: Color.fromARGB(
+                                                    250,
+                                                    255,
+                                                    118,
+                                                    24,
+                                                  ),
                                                 ),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
@@ -336,7 +427,12 @@ class _MyOrderState extends State<MyOrder> {
                                               child: Text(
                                                 "Rate",
                                                 style: TextStyle(
-                                                  color: Colors.deepOrange,
+                                                  color: Color.fromARGB(
+                                                    250,
+                                                    255,
+                                                    118,
+                                                    24,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -345,10 +441,20 @@ class _MyOrderState extends State<MyOrder> {
                                           Expanded(
                                             flex: 1,
                                             child: ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.of(
+                                                  context,
+                                                ).pushReplacementNamed(
+                                                  '/cartscreen',
+                                                );
+                                              },
                                               style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    Colors.deepOrange,
+                                                backgroundColor: Color.fromARGB(
+                                                  250,
+                                                  255,
+                                                  118,
+                                                  24,
+                                                ),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
